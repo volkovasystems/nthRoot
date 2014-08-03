@@ -35,17 +35,27 @@ public class nthRoot{
 		
 		BigDecimal previousGuessRoot = BigDecimal.ZERO;
 		do{
-			previousGuessRoot = new BigDecimal( guessRoot.toString( ) );
+			previousGuessRoot = guessRoot;
 
 			BigDecimal phaseA = rootExponent.subtract( BigDecimal.ONE ).multiply( guessRoot );
 
-			BigDecimal phaseB = baseValue.divide( guessRoot.pow( rootExponent.subtract( BigDecimal.ONE ) ) );
+			System.out.println( "phase A: " + phaseA.toString( ) );
+
+			BigDecimal phaseB = baseValue.divide( guessRoot.pow( rootExponent.subtract( BigDecimal.ONE ).intValue( ) ) );
+
+			System.out.println( "phase B: " + phaseB.toString( ) );
 
 			BigDecimal phaseC = BigDecimal.ONE.divide( rootExponent );
 
+			System.out.println( "phase C: " + phaseC.toString( ) );
+
 			guessRoot = phaseC.multiply( phaseA.add( phaseB ) );
 
-		}while( guessRoot.compareTo( previousGuessRoot ) == 0 );
+			System.out.println( "Guess root: " + guessRoot.toString( ) );
+			System.out.println( "Previous guess root: " + guessRoot.toString( ) );
+			System.out.println( "Base value: " + baseValue.toString( ) );
+
+		}while( guessRoot.pow( rootExponent.intValue( ) ).compareTo( baseValue ) != 0 );
 		
 		return guessRoot;		
 	}
