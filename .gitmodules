@@ -1,0 +1,3 @@
+[submodule "nthPower"]
+	path = nthPower
+	url = git@github.com:volkovasystems/nthPower.git
