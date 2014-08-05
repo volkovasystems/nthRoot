@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
+import static nthPower.nthPower.nthPower;
+
 /*
 	NOTE: Always compile with '-d .' 
 		And always run with <package-name>.<class-name> format
@@ -51,8 +53,9 @@ public class nthRoot{
 			This will be used to validate the guess root.
 		*/
         int basePrecision = 1;
-        if( baseValue.toString( ).split( "\\." ).length > 1 ){
-            basePrecision = baseValue.toString( ).split( "\\." )[ 1 ].length( );
+        String[ ] baseValuePartList = baseValue.toString( ).split( "\\." );
+        if( baseValuePartList.length > 1 ){
+            basePrecision = baseValuePartList[ 1 ].length( );
         }
 
         /*
@@ -69,11 +72,13 @@ public class nthRoot{
 		do{
 			BigDecimal phaseA = rootExponent.subtract( BigDecimal.ONE ).multiply( guessRoot );
 
-			BigDecimal phaseB = baseValue.divide( guessRoot.pow( rootExponent.subtract( BigDecimal.ONE ).intValue( ) ), precision, RoundingMode.HALF_UP );
+            BigDecimal phaseB = nthPower( guessRoot.toString( ), rootExponent.subtract( BigDecimal.ONE ).toString( ) );
 
-			BigDecimal phaseC = BigDecimal.ONE.divide( rootExponent, precision, RoundingMode.HALF_UP );
+			BigDecimal phaseC = baseValue.divide( phaseB, precision, RoundingMode.HALF_UP );
 
-			guessRoot = phaseC.multiply( phaseA.add( phaseB ) ).setScale( precision, RoundingMode.HALF_UP );
+			BigDecimal phaseD = BigDecimal.ONE.divide( rootExponent, precision, RoundingMode.HALF_UP );
+
+			guessRoot = phaseD.multiply( phaseA.add( phaseC ) ).setScale( precision, RoundingMode.HALF_UP );
 
 			//We increase the precision to match the evaluation.
 			//NOTE: Increasing the precision means increasing the number of digits after the dot.
