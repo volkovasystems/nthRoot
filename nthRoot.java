@@ -64,8 +64,9 @@ public class nthRoot{
         		guessRoot_index = ( 1 / exponent ) * ( ( ( exponent - 1 ) * guessRoot_index ) + ( baseValue / ( guessRoot_index ^ exponent - 1 ) ) )
 
         	Phase A involves this equation: ( ( exponent - 1 ) * guessRoot_index )
-        	Phase B involves this equation: ( baseValue / ( guessRoot_index ^ exponent - 1 ) )
-        	Phase C involves this equation: ( 1 / exponent )
+        	Phase B involves this equation: ( guessRoot_index ^ exponent - 1 )
+        	Phase C involves this equation: ( baseValue / phaseB )
+        	Phase D involves this equation: ( 1 / exponent )
 
         	guessRoot at the specific index is therefore equal to C * ( A + B )
         */
