@@ -38,12 +38,19 @@ public class nthRoot{
             }
         }
 
-		BigDecimal root = nthRoot( value, exponent, guessFactor, precision );
+        try{
+            BigDecimal root = nthRoot( value, exponent, guessFactor, precision );
 
-		System.out.print( root.toString( ) );
+            System.out.print( root.toString( ) );
+
+        }catch( Exception exception ){
+            System.err.print( exception.getMessage( ) );
+        }
 	}
 
-	public static final BigDecimal nthRoot( String value, String exponent, String guessFactor, int precision ){
+	public static final BigDecimal nthRoot( String value, String exponent, String guessFactor, int precision )
+        throws Exception
+    {
 		BigDecimal rootExponent = new BigDecimal( exponent );
 		BigDecimal baseValue = new BigDecimal( value );
 		BigDecimal guessRoot = baseValue.divide( new BigDecimal( guessFactor ) );
