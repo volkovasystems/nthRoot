@@ -1,12 +1,12 @@
 /*:
 	@build-configuration:
 		{
-			"dependencyList":[
-
-			],
+			"dependencyList":
+				"nthPower": "github.com/volkovasystems"
+			},
 
 			"buildProcessList": [
-				
+				""	
 			]
 		}
 	@end-build-configuration
